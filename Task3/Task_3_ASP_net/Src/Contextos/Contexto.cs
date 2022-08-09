@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Task_3_ASP_net.Src.Modelos;
 
 namespace Task_3_ASP_net.Src.Contextos
 {
@@ -6,8 +7,8 @@ namespace Task_3_ASP_net.Src.Contextos
     {
         #region Atributos
         public DbSet<Usuario> Usuarios { get; set; }
-        public DbSet<Compras> Temas { get; set; }
-        public DbSet<Produtos> Postagens { get; set; }
+        public DbSet<Compras> Compras { get; set; }
+        public DbSet<Produtos> Produtos { get; set; }
         #endregion
         #region Construtores
         public Contexto(DbContextOptions<Contexto> opt) :
