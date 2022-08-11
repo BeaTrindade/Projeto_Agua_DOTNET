@@ -10,9 +10,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Task_3_ASP_net.Src.Contextos;
+using PeixeLegal.Src.Contextos;
+using PeixeLegal.Src.Repositorios;
+using PeixeLegal.Src.Repositorios.Implementacoes;
 
-namespace Task_3_ASP_net
+namespace PeixeLegal
 {
     public class Startup
     {
@@ -28,8 +30,16 @@ namespace Task_3_ASP_net
         {
             // Configuração de Banco de dados
             services.AddDbContext<Contexto>(opt =>opt.UseSqlServer(Configuration["ConnectionStringsDev:DefaultConnection"]));
+
+            // Repositorios
+            services.AddScoped<IUsuarios, UsuarioRepositorio>();
+            services.AddScoped<IProdutos, ProdutosRepositorio>();
+
             // Controladores
             services.AddControllers();
+            services.AddCors();
+           
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -45,9 +55,10 @@ namespace Task_3_ASP_net
             contexto.Database.EnsureCreated();
 
             app.UseRouting();
-
-            app.UseAuthorization();
-
+            app.UseCors(c => c
+            .AllowAnyOrigin()
+            .AllowAnyMethod()
+            .AllowAnyHeader());
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();

@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Task_3_ASP_net.Src.Modelos;
+using PeixeLegal.Src.Modelos;
 
-namespace Task_3_ASP_net.Src.Contextos
+namespace PeixeLegal.Src.Contextos
 {
     public class Contexto : DbContext
     {
