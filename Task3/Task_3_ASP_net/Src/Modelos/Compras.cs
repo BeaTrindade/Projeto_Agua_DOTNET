@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Task_3_ASP_net.Src.Modelos
+namespace PeixeLegal.Src.Modelos
 {
     [Table("tb_Compras")]
     public class Compras

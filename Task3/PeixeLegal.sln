@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32630.192
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Task_3_ASP_net", "Task_3_ASP_net\Task_3_ASP_net.csproj", "{667C9630-3386-45A2-B7BE-DAF7F0DF68FE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PeixeLegal", "Task_3_ASP_net\PeixeLegal.csproj", "{667C9630-3386-45A2-B7BE-DAF7F0DF68FE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestProject1", "TestProject1\TestProject1.csproj", "{D2BB3F3E-E35C-49BC-8FF2-6285A2099C15}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestProject1", "TestProject1\TestProject1.csproj", "{D2BB3F3E-E35C-49BC-8FF2-6285A2099C15}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
