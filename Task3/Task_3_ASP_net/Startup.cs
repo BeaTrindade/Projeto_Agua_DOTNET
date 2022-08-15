@@ -29,7 +29,7 @@ namespace PeixeLegal
         public void ConfigureServices(IServiceCollection services)
         {
             // Configuração de Banco de dados
-            services.AddDbContext<Contexto>(opt =>opt.UseSqlServer(Configuration["ConnectionStringsDev:DefaultConnection"]));
+            services.AddDbContext<PeixeLegalContextos>(opt =>opt.UseSqlServer(Configuration["ConnectionStringsDev:DefaultConnection"]));
 
             // Repositorios
             services.AddScoped<IUsuarios, UsuarioRepositorio>();
@@ -43,7 +43,7 @@ namespace PeixeLegal
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, Contexto contexto)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, PeixeLegalContextos contexto)
         {
             if (env.IsDevelopment())
             {
