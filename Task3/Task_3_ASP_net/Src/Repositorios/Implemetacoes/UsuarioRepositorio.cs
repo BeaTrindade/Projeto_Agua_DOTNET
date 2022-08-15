@@ -11,10 +11,10 @@ using Microsoft.EntityFrameworkCore;
         public class UsuarioRepositorio : IUsuarios
         {
             #region Atributos
-            private readonly Contexto _contexto;
+            private readonly PeixeLegalContextos _contexto;
             #endregion
             #region Construtores
-            public UsuarioRepositorio(Contexto contexto)
+            public UsuarioRepositorio(PeixeLegalContextos contexto)
             {
                 _contexto = contexto;
             }
