@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace PeixeLegal.Src.Repositorios.Implemetacoes
 {
-    public class PostagemRepositorio : ICompras
+    public class ComprasRepositorio : ICompras
     {
         #region Atributos
 
@@ -17,7 +17,7 @@ namespace PeixeLegal.Src.Repositorios.Implemetacoes
         #endregion Atributos
 
         #region Construtores
-        public PostagemRepositorio(PeixeLegalContextos contexto)
+        public ComprasRepositorio(PeixeLegalContextos contexto)
         {
             _contexto = contexto;
         }
