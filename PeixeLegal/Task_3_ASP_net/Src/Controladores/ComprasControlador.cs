@@ -8,70 +8,39 @@ using Microsoft.AspNetCore.Authorization;
 namespace PeixeLegal.Src.Controladores
 {
     [ApiController]
-    [Route("api/Produtos")]
+    [Route("api/Compras")]
     [Produces("application/json")]
-    public class ProdutosControlador : ControllerBase
+
+    public class ComprasControlador : ControllerBase
     {
         #region Atributos
-        private readonly IProdutos _repositorio;
+        private readonly ICompras _repositorio;
         #endregion
+
         #region Construtores
-        public ProdutosControlador(IProdutos repositorio)
+        public ComprasControlador(ICompras repositorio)
         {
             _repositorio = repositorio;
         }
         #endregion
+
         #region Métodos
         [HttpGet]
         [Authorize]
-        public async Task<ActionResult> PegarTodosProdutosAsync()
+        public async Task<ActionResult> PegarTodasComprasAsync()
         {
-            var lista = await _repositorio.PegarTodosProdutosAsync();
+            var lista = await _repositorio.PegarTodasComprasAsync();
             if (lista.Count < 1) return NoContent();
             return Ok(lista);
         }
-        [HttpGet("id/{idProdutos}")]
+
+        [HttpGet("id/{idCompras}")]
         [Authorize]
-        public async Task<ActionResult> PegarProdutosPeloIdAsync([FromRoute] int id_Produto)
+        public async Task<ActionResult> PegarComprasPeloIdAsync([FromRoute] int id_Compras)
         {
             try
             {
-                return Ok(await _repositorio.PegarProdutosPeloIdAsync(id_Produto));
-            }
-            catch (Exception ex)
-            {
-                return NotFound(new { Mensagem = ex.Message });
-            }
-        }
-        [HttpPost]
-        [Authorize]
-        public async Task<ActionResult> NovoProdutosAsync([FromBody] Produtos produtos)
-        {
-            await _repositorio.NovoProdutosAsync(produtos);
-            return Created($"api/Produtos", produtos);
-        }
-        [HttpPut]
-        [Authorize(Roles = "ADMIN")]
-        public async Task<ActionResult> AtualizarProdutosAsync([FromBody] Produtos produto)
-        {
-            try
-            {
-                await _repositorio.AtualizarProdutosAsync(produto);
-                return Ok(produto);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(new { Mensagem = ex.Message });
-            }
-        }
-        [HttpDelete("deletar/{idProdutos}")]
-        [Authorize(Roles = "ADMIN")]
-        public async Task<ActionResult> DeletarProdutosAsync([FromRoute] int id_Produto)
-        {
-            try
-            {
-                await _repositorio.DeletarProdutosAsync(id_Produto);
-                return NoContent();
+                return Ok(await _repositorio.PegarComprasPeloIdAsync(id_Compras));
             }
             catch (Exception ex)
             {
@@ -79,6 +48,43 @@ namespace PeixeLegal.Src.Controladores
             }
         }
 
+        [HttpPost]
+        [Authorize]
+        public async Task<ActionResult> NovaComprasAsync([FromBody] Compras compras)
+        {
+            await _repositorio.NovaComprasAsync(compras);
+            return Created($"api/Compras", compras);
+        }
+
+        [HttpPut]
+        [Authorize]
+        public async Task<ActionResult> AtualizarComprasAsync([FromBody] Compras compras)
+        {
+            try
+            {
+                await _repositorio.AtualizarComprasAsync(compras);
+                return Ok(compras);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { Mensagem = ex.Message });
+            }
+        }
+
+        [HttpDelete("deletar/{idCompras}")]
+        [Authorize]
+        public async Task<ActionResult> DeletarComprasAsync([FromRoute] int id_Compras)
+        {
+            try
+            {
+                await _repositorio.DeletarComprasAsync(id_Compras);
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+                return NotFound(new { Mensagem = ex.Message });
+            }
+        }
         #endregion
     }
 }

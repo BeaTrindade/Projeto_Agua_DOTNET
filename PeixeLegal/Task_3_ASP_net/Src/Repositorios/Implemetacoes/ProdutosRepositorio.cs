@@ -11,10 +11,10 @@ namespace PeixeLegal.Src.Repositorios.Implementacoes
     public class ProdutosRepositorio : IProdutos
     {
         #region Atributos
-        private readonly Contexto _contexto;
+        private readonly PeixeLegalContextos _contexto;
         #endregion Atributos
         #region Construtores
-        public ProdutosRepositorio(Contexto contexto)
+        public ProdutosRepositorio(PeixeLegalContextos contexto)
         {
             _contexto = contexto;
         }
