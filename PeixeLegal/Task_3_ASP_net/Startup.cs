@@ -38,6 +38,19 @@ namespace PeixeLegal
         public void ConfigureServices(IServiceCollection services)
         {
             // Configuração de Banco de dados
+            if (Configuration["Enviroment:Start"] == "PROD")
+            {
+                services.AddEntityFrameworkNpgsql()
+                .AddDbContext<PeixeLegalContextos>(
+                opt =>
+                opt.UseNpgsql(Configuration["ConnectionStringsProd:DefaultConnection"]));
+            }
+            else
+            {
+                services.AddDbContext<PeixeLegalContextos>(
+                opt =>
+                opt.UseSqlServer(Configuration["ConnectionStringsDev:DefaultConnection"]));
+            }
             services.AddDbContext<PeixeLegalContextos>(opt =>opt.UseSqlServer(Configuration["ConnectionStringsDev:DefaultConnection"]));
 
             // Repositorios
@@ -77,7 +90,7 @@ namespace PeixeLegal
             {
                 s.SwaggerDoc("v1", new OpenApiInfo
                 {
-                    Title = "Blog Pessoal",
+                    Title = "Peixe Legal",
                     Version ="v1"
                 });
                 s.AddSecurityDefinition(
@@ -132,9 +145,21 @@ namespace PeixeLegal
                 });
             }
 
+            // Ambiente de produção
+            contexto.Database.EnsureCreated();
+            app.UseDeveloperExceptionPage();
+            app.UseSwagger();
+            app.UseSwaggerUI(c => {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Peixe Legal v1");
+                c.RoutePrefix = string.Empty;
+            });
+
+
+            // Rotas
             contexto.Database.EnsureCreated();
 
             app.UseRouting();
+
             app.UseCors(c => c
                 .AllowAnyOrigin()
                 .AllowAnyMethod()
