@@ -34,7 +34,8 @@ using Microsoft.EntityFrameworkCore;
                 Log_in = usuario.Log_in,
                 Email = usuario.Email,
                 Senha = usuario.Senha,
-                Documento = usuario.Documento
+                Documento = usuario.Documento,
+                Tipo = usuario.Tipo
             });
             await _contexto.SaveChangesAsync();
         }

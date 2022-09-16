@@ -34,13 +34,13 @@ namespace PeixeLegal.Src.Controladores
             return Ok(lista);
         }
 
-        [HttpGet("id/{idCompras}")]
+        [HttpGet("id/{idCompra}")]
         [Authorize]
-        public async Task<ActionResult> PegarComprasPeloIdAsync([FromRoute] int id_Compras)
+        public async Task<ActionResult> PegarComprasPeloIdAsync([FromRoute] int idCompra)
         {
             try
             {
-                return Ok(await _repositorio.PegarComprasPeloIdAsync(id_Compras));
+                return Ok(await _repositorio.PegarComprasPeloIdAsync(idCompra));
             }
             catch (Exception ex)
             {
@@ -71,13 +71,13 @@ namespace PeixeLegal.Src.Controladores
             }
         }
 
-        [HttpDelete("deletar/{idCompras}")]
+        [HttpDelete("deletar/{idCompra}")]
         [Authorize]
-        public async Task<ActionResult> DeletarComprasAsync([FromRoute] int id_Compras)
+        public async Task<ActionResult> DeletarComprasAsync([FromRoute] int idCompra)
         {
             try
             {
-                await _repositorio.DeletarComprasAsync(id_Compras);
+                await _repositorio.DeletarComprasAsync(idCompra);
                 return NoContent();
             }
             catch (Exception ex)
