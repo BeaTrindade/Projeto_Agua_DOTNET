@@ -30,13 +30,13 @@ namespace PeixeLegal.Src.Controladores
             if (lista.Count < 1) return NoContent();
             return Ok(lista);
         }
-        [HttpGet("id/{idProdutos}")]
+        [HttpGet("id/{idProduto}")]
         [Authorize]
-        public async Task<ActionResult> PegarProdutosPeloIdAsync([FromRoute] int id_Produto)
+        public async Task<ActionResult> PegarProdutosPeloIdAsync([FromRoute] int idProduto)
         {
             try
             {
-                return Ok(await _repositorio.PegarProdutosPeloIdAsync(id_Produto));
+                return Ok(await _repositorio.PegarProdutosPeloIdAsync(idProduto));
             }
             catch (Exception ex)
             {
@@ -50,6 +50,7 @@ namespace PeixeLegal.Src.Controladores
             await _repositorio.NovoProdutosAsync(produtos);
             return Created($"api/Produtos", produtos);
         }
+
         [HttpPut]
         [Authorize(Roles = "ADMIN")]
         public async Task<ActionResult> AtualizarProdutosAsync([FromBody] Produtos produto)
@@ -64,13 +65,13 @@ namespace PeixeLegal.Src.Controladores
                 return BadRequest(new { Mensagem = ex.Message });
             }
         }
-        [HttpDelete("deletar/{idProdutos}")]
+        [HttpDelete("deletar/{idProduto}")]
         [Authorize(Roles = "ADMIN")]
-        public async Task<ActionResult> DeletarProdutosAsync([FromRoute] int id_Produto)
+        public async Task<ActionResult> DeletarProdutosAsync([FromRoute] int idProduto)
         {
             try
             {
-                await _repositorio.DeletarProdutosAsync(id_Produto);
+                await _repositorio.DeletarProdutosAsync(idProduto);
                 return NoContent();
             }
             catch (Exception ex)
