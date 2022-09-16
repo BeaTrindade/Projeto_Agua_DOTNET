@@ -40,8 +40,13 @@ namespace PeixeLegal.Src.Repositorios.Implementacoes
             await _contexto.Produtos.AddAsync(
             new Produtos
             {
-                Descricao = produtos.Descricao
-            });
+                Produto = produtos.Produto,
+                Descricao = produtos.Descricao,
+                Categoria = produtos.Categoria,
+                Valor = produtos.Valor,
+                Quantidade = produtos.Quantidade,
+                Url_Imagem = produtos.Url_Imagem
+            }) ;
             await _contexto.SaveChangesAsync();
         }
 
