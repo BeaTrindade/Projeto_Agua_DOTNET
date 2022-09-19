@@ -23,7 +23,7 @@ namespace PeixeLegal.Src.Controladores
         #endregion
         #region Métodos
         [HttpGet]
-        [Authorize]
+        [AllowAnonymous]
         public async Task<ActionResult> PegarTodosProdutosAsync()
         {
             var lista = await _repositorio.PegarTodosProdutosAsync();
